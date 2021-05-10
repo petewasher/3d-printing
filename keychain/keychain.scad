@@ -1,8 +1,9 @@
 module keychain_shape()
 {
-    cube([50,50,5]);
+    height=3;
+    cube([50,50,height]);
     translate([45,45,0]) {
-        cylinder(5,10,10);
+        cylinder(height,10,10);
     }
 }
 
@@ -21,21 +22,29 @@ module keychain() {
 }
 font_style="DIN Schablonierschrift";
 
+LINE_ONE="ONE";
+LINE_TWO="TWO";
+LINE_THREE="THREE";
+
 module keychain_text() {
+    translate([20,35,-20]) {
+        linear_extrude(50) {
+            text(LINE_ONE,font=font_style,halign="center",size=8);
+        }
+    }
     translate([25,20,-20]) {
         linear_extrude(50) {
-            text("ROOF",font=font_style,halign="center");
+            text(LINE_TWO,font=font_style,halign="center");
         }
     }
     translate([25,5,-20]) {
         linear_extrude(50) {
-            text("BARS",font=font_style,halign="center");
+            text(LINE_THREE,font=font_style,halign="center");
         }
     }
 }
 
 difference() {
-//text("hello");
-keychain();
+    keychain();
     keychain_text();
 }
